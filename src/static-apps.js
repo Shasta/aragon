@@ -39,5 +39,14 @@ export const staticApps = new Map(
       },
       route: '/settings',
     },
+    shasta: {
+      app: {
+        appId: 'shasta',
+        name: 'Shasta',
+        icon: <IconSettings />,
+        instances: [{ instanceId: 'shasta' }],
+      },
+      route: '/shasta',
+    },
   })
 )

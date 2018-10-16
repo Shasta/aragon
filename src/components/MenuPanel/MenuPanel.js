@@ -23,6 +23,7 @@ const APP_APPS_CENTER = staticApps.get('apps').app
 const APP_HOME = staticApps.get('home').app
 const APP_PERMISSIONS = staticApps.get('permissions').app
 const APP_SETTINGS = staticApps.get('settings').app
+const APP_SHASTA = staticApps.get('shasta').app
 
 const prepareAppGroups = apps =>
   apps.reduce((groups, app) => {
@@ -75,6 +76,7 @@ class MenuPanel extends React.PureComponent {
       APP_PERMISSIONS,
       APP_APPS_CENTER,
       APP_SETTINGS,
+      APP_SHASTA,
     ]
 
     return (

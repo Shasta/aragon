@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SidePanel } from '@aragon/ui'
-import { Apps, Permissions, Settings } from './apps'
+import { Apps, Permissions, Settings, Shasta } from './apps'
 import ethereumLoadingAnimation from './assets/ethereum-loading.svg'
 import AppIFrame from './components/App/AppIFrame'
 import App404 from './components/App404/App404'
@@ -259,6 +259,17 @@ class Wrapper extends React.Component {
       )
     }
 
+    if (instanceId === 'shasta') {
+      return (
+        <Settings
+          daoAddr={daoAddress}
+          account={account}
+          walletNetwork={walletNetwork}
+          apps={apps}
+        />
+      )
+    }
+    
     if (!wrapper || appsLoading) {
       return <LoadingApps />
     }
