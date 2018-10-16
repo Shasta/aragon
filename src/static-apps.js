@@ -1,5 +1,7 @@
 import React from 'react'
 import { IconHome, IconSettings, IconPermissions, IconApps } from '@aragon/ui'
+import LogoShasta from './assets/logo-shasta.png';
+import { Image } from 'semantic-ui-react'
 
 export const staticApps = new Map(
   Object.entries({
@@ -43,7 +45,7 @@ export const staticApps = new Map(
       app: {
         appId: 'shasta',
         name: 'Shasta',
-        icon: <IconSettings />,
+        icon: <Image style={{width:"100%"}} className='logo-image' src={LogoShasta} />,
         instances: [{ instanceId: 'shasta' }],
       },
       route: '/shasta',

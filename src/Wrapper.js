@@ -261,7 +261,7 @@ class Wrapper extends React.Component {
 
     if (instanceId === 'shasta') {
       return (
-        <Settings
+        <Shasta
           daoAddr={daoAddress}
           account={account}
           walletNetwork={walletNetwork}

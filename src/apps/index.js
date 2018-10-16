@@ -1,4 +1,4 @@
 export { default as Permissions } from './Permissions/Permissions'
 export { default as Settings } from './Settings/Settings'
 export { default as Apps } from './Apps/Apps'
-export { default as Shasta } from './Shasta/Settings'
+export { default as Shasta } from './Shasta/Shasta'
