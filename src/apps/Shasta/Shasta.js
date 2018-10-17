@@ -12,7 +12,7 @@ const Content = styled.div`
 class Shasta extends React.Component {
 
   redirectToShasta() {
-    window.location.href = "https://app.shasta.world/sign-in"
+    window.location.href = "http://localhost:5000"
   }
   render() {
     return (
