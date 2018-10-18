@@ -323,7 +323,7 @@ class Onboarding extends React.PureComponent {
     }
   }
   isNextEnabled() {
-    const { daoCreationStatus } = this.props
+    const { daoCreationStatus, saveShastaStatus } = this.props
     const { template, domainCheckStatus } = this.state
     const step = this.currentStep()
     if (step.screen === 'template' || step.screen === 'start') {
@@ -336,7 +336,7 @@ class Onboarding extends React.PureComponent {
       return this.validateConfigurationScreen(template, step.screen)
     }
     if (step.screen === 'sign') {
-      return daoCreationStatus === 'success'
+      return daoCreationStatus === 'success' && saveShastaStatus === 'success'
     }
     return true
   }
@@ -439,6 +439,7 @@ class Onboarding extends React.PureComponent {
       walletNetwork,
       balance,
       daoCreationStatus,
+      saveShastaStatus,
       onComplete,
     } = this.props
 
@@ -488,6 +489,7 @@ class Onboarding extends React.PureComponent {
       return (
         <Sign
           daoCreationStatus={daoCreationStatus}
+          saveShastaStatus={saveShastaStatus}
           onTryAgain={this.reset}
           {...sharedProps}
         />

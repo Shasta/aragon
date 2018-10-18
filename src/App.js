@@ -1,7 +1,7 @@
 import React from 'react'
 import createHistory from 'history/createHashHistory'
 import { PublicUrl, BaseStyles } from '@aragon/ui'
-import { contractAddresses, web3Providers } from './environment'
+import { contractAddresses, web3Providers, ShastaUser } from './environment'
 import { parsePath } from './routing'
 import initWrapper, {
   initDaoBuilder,
@@ -16,6 +16,8 @@ import { log } from './utils'
 import { PermissionsProvider } from './contexts/PermissionsContext'
 import { ModalProvider } from './components/ModalManager/ModalManager'
 import DeprecatedBanner from './components/DeprecatedBanner/DeprecatedBanner'
+
+const ShastaUserArtifacts  = require('shasta-os/build/contracts/User.json');
 
 class App extends React.Component {
   state = {
@@ -33,6 +35,7 @@ class App extends React.Component {
     web3: null,
     daoAddress: '',
     daoCreationStatus: 'none', // none / success / error
+    saveShastaStatus: 'none', // none / success / error
     buildData: null, // data returned by aragon.js when a DAO is created
     transactionBag: null,
     walletNetwork: '',
@@ -128,27 +131,48 @@ class App extends React.Component {
   handleResetDaoBuilder = () => {
     this.setState({
       daoCreationStatus: 'none',
+      saveShastaStatus: 'none',
       buildData: null,
     })
   }
 
   handleBuildDao = async (templateName, organizationName, data) => {
     const { daoBuilder } = this.state
+    let domain;
     try {
       const [token, dao] = await daoBuilder.build(
         templateName,
         organizationName,
         data
       )
-      const domain = `${organizationName}.aragonid.eth`
+      domain = `${organizationName}.aragonid.eth`
       this.setState({
         daoCreationStatus: 'success',
         buildData: { token, dao, domain },
       })
       log('DAO created', dao, token, domain)
+      log('now Shasta')
     } catch (err) {
       log(err)
       this.setState({ daoCreationStatus: 'error' })
+    }
+    try {
+      const { web3, walletWeb3, account} = this.state;
+      console.log(walletWeb3, web3)
+      const ShastaUser = new walletWeb3.eth.Contract(ShastaUserArtifacts.abi, ShastaUserArtifacts.networks[4].address)
+      log("Estimating gas...")
+      const estimatedGas = await ShastaUser.methods.saveOrganizationName(domain).estimateGas({ from: account});
+      log('gas', estimatedGas)
+      const saveEnsDomain = await ShastaUser.methods.saveOrganizationName(domain).send({gas: estimatedGas, from: account});
+      log("done!", saveEnsDomain)
+      this.setState({
+        saveShastaStatus: 'success'
+      })
+    } catch (err) {
+      console.error(err)
+      this.setState({
+        saveShastaStatus: 'error'
+      })
     }
   }
 
@@ -235,6 +259,7 @@ class App extends React.Component {
       appsLoading,
       permissionsLoading,
       showDeprecatedBanner,
+      saveShastaStatus,
     } = this.state
     const { mode, dao } = locator
     if (!mode) return null
@@ -278,6 +303,7 @@ class App extends React.Component {
             walletNetwork={walletNetwork}
             onBuildDao={this.handleBuildDao}
             daoCreationStatus={daoCreationStatus}
+            saveShastaStatus={saveShastaStatus}
             onComplete={this.handleCompleteOnboarding}
             onOpenOrganization={this.handleOpenOrganization}
             onResetDaoBuilder={this.handleResetDaoBuilder}

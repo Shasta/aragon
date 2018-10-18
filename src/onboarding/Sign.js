@@ -15,7 +15,7 @@ class Sign extends React.Component {
     onTryAgain: noop,
   }
   render() {
-    const { positionProgress, daoCreationStatus, onTryAgain } = this.props
+    const { positionProgress, daoCreationStatus, saveShastaStatus, onTryAgain } = this.props
     return (
       <Main>
         <Content
@@ -27,6 +27,7 @@ class Sign extends React.Component {
           <SignContent
             daoCreationStatus={daoCreationStatus}
             onTryAgain={onTryAgain}
+            saveShastaStatus={saveShastaStatus}
           />
         </Content>
       </Main>
@@ -36,7 +37,7 @@ class Sign extends React.Component {
 
 class SignContent extends React.PureComponent {
   render() {
-    const { daoCreationStatus, onTryAgain } = this.props
+    const { daoCreationStatus, saveShastaStatus, onTryAgain } = this.props
     return (
       <React.Fragment>
         <Title>
@@ -47,7 +48,7 @@ class SignContent extends React.PureComponent {
 
         <p>
           <Text size="large" color={theme.textSecondary}>
-            Your wallet should open and you need to sign two transactions, one
+            Your wallet should open and you need to sign three transactions, one
             after another.
           </Text>
         </p>
@@ -69,17 +70,23 @@ class SignContent extends React.PureComponent {
             </TransactionTitle>
             {this.renderTxStatus(daoCreationStatus)}
           </Transaction>
+          <Transaction>
+            <TransactionTitle>
+              <Text weight="bold" color={theme.textSecondary} smallcaps>
+                Saving reference in Shasta
+              </Text>
+            </TransactionTitle>
+            {this.renderTxStatus(saveShastaStatus)}
+          </Transaction>
         </Transactions>
-
-        {daoCreationStatus === 'error' && (
+        {daoCreationStatus === 'error' || saveShastaStatus === 'error' && (
           <TryAgain>
             <Button mode="outline" compact onClick={onTryAgain}>
               Try Again
             </Button>
           </TryAgain>
         )}
-
-        {daoCreationStatus !== 'error' && (
+        {daoCreationStatus !== 'error' || saveShastaStatus !== 'error' && (
           <Note>
             <Text size="xsmall" color={theme.textSecondary}>
               It might take some time before these transactions get processed,
