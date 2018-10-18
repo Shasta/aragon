@@ -15,7 +15,6 @@ import { noop } from '../utils'
 import { fromWei, toWei } from '../web3-utils'
 import { lerp } from '../math-utils'
 import LoadingRing from '../components/LoadingRing'
-import logo from './assets/logo-welcome.svg'
 
 import {
   DomainCheckNone,
@@ -23,7 +22,7 @@ import {
   DomainCheckAccepted,
   DomainCheckRejected,
 } from './domain-states'
-import {ShastaButton as Button} from "../shastaStyles"
+import {ShastaButton as Button, OpenOrgButton} from "../shastaStyles"
 
 const MINIMUM_BALANCE = new BN(toWei('0.1'))
 
@@ -110,7 +109,6 @@ class StartContent extends React.PureComponent {
       <React.Fragment>
         <Title>
           <Text size="great" weight="bold" color={theme.textDimmed}>
-            Welcome to Aragon
           </Text>
         </Title>
         <Action>
@@ -170,9 +168,9 @@ class StartContent extends React.PureComponent {
 
               <span style={{ height: '40px' }}>
                 {domainCheckStatus === DomainCheckAccepted && (
-                  <Button mode="outline" compact onClick={onOpenOrganization}>
+                  <OpenOrgButton compact onClick={onOpenOrganization}>
                     Open organization
-                  </Button>
+                  </OpenOrgButton>
                 )}
                 {domainCheckStatus === DomainCheckRejected && (
                   <Text
@@ -251,7 +249,6 @@ const Main = styled.div`
   padding: 100px;
   @media (min-width: 1180px) {
     justify-content: flex-start;
-    background: url(${logo}) no-repeat calc(100% - 70px) 60%;
   }
 `
 

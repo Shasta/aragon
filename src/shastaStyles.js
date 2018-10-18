@@ -25,5 +25,17 @@ import {
   }
   
   `
+const OpenOrgButton = styled(Button)`
 
-  export {ShastaButton}
+&& {
+    background: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+    border-image: initial;
+}
+
+`
+
+
+  export {ShastaButton, OpenOrgButton}

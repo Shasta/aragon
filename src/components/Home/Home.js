@@ -103,7 +103,7 @@ class Home extends React.Component {
                         fontSize: lerp(showAppsProgress, 37, 22) + 'px',
                       }}
                     >
-                      Welcome to Aragon!
+                      Welcome to your organization!
                     </Text>
                     <Text
                       style={{
@@ -171,7 +171,6 @@ const Main = styled.div`
   justify-content: stretch;
 
   background-color: ${theme.mainBackground};
-  background-image: url(${logo});
   background-position: 50% 50%;
   background-repeat: no-repeat;
 `

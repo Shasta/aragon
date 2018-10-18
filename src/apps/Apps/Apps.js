@@ -74,6 +74,8 @@ class Apps extends React.Component {
 
 const DevPortalAnchor = styled(Button.Anchor)`
   display: block;
+  background-image: none;
+  background-color: #9c3779;
 `
 
 const Content = styled.div`

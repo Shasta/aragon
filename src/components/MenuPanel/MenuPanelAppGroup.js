@@ -158,7 +158,7 @@ const MenuItemBar = styled.div`
   position: absolute;
   width: 4px;
   height: 100%;
-  background: ${theme.accent};
+  background: #f076b6;
 `
 
 export default MenuPanelAppGroup
