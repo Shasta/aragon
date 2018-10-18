@@ -49,6 +49,7 @@ class ProgressBar extends React.Component {
               <StepsContainer>
                 {Steps.ProgressBarGroups.map(({ label }, index) => (
                   <StepWrapper
+                  
                     key={index}
                     label={label}
                     active={
@@ -82,7 +83,7 @@ class StepWrapper extends React.PureComponent {
 
 const COLOR_TEXT = '#C0C0C0'
 const COLOR_INACTIVE = '#D8D8D8'
-const COLOR_ACTIVE = '#02B9E4'
+const COLOR_ACTIVE = '#9c3779'
 
 const Main = styled.div`
   position: absolute;

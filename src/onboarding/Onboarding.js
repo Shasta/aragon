@@ -383,11 +383,12 @@ class Onboarding extends React.PureComponent {
                 ? 'none'
                 : `translate3d(0, ${110 * (1 - showProgress)}%, 0)`,
               opacity: visible ? showProgress : 1,
+              backgroundImage:"linear-gradient( 0deg,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.08) 100% ),linear-gradient(-226deg,#f6b7dd 0%,#ed77b9 100%)",           
             }}
           >
             <BannerWrapper>{banner}</BannerWrapper>
             <View>
-              <Window>
+              <Window style={{ boxShadow:"none"}}>
                 <Motion
                   style={{ screenProgress: spring(stepIndex, SPRING_SCREEN) }}
                 >

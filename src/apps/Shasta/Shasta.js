@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from '@aragon/ui'
 import AppLayout from '../../components/AppLayout/AppLayout'
 import styled from 'styled-components'
-import Option from './Option'
 
 const Content = styled.div`
   max-width: 600px;

@@ -5,7 +5,6 @@ import {
   theme,
   Text,
   SafeLink,
-  Button,
   TextInput,
   IconCheck,
   IconCross,
@@ -24,6 +23,7 @@ import {
   DomainCheckAccepted,
   DomainCheckRejected,
 } from './domain-states'
+import {ShastaButton as Button} from "../shastaStyles"
 
 const MINIMUM_BALANCE = new BN(toWei('0.1'))
 

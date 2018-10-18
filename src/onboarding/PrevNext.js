@@ -82,6 +82,16 @@ const Main = styled.div`
 
 const StrongButton = styled(Button).attrs({ mode: 'strong' })`
   min-width: 120px;
+  background-image: none;
+  background-color: #9c3779;
+  &:after {
+      background-image: none;
+      background-color: #9c3779;
+  }
+  &:disabled {
+      color: #FFFFFF;
+      background-color: #E6E6E6;
+  }
 `
 
 export default PrevNext
